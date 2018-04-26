@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+               <!--경로 ex) com.javaex.vo.emaillistVo-->
+              <typeAlias alias="userVo" type="com.javaex.vo.UserVo"/>
+        </typeAliases>    
+    <mappers>
+        <!--xml 파일이 추가될 경우 아래에 계속 mapper 시켜줘야한다.-->
+        <mapper resource="mybatis/mappers/user.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user"> <!--클래스명은 xml명과 똑같을 필요 없음-->
+   
+    <!-- 쿼리문 작성 -->
+
+	<insert id="insert" parameterType="userVo">
+	<![CDATA[
+		  insert into users
+		  values (seq_user_no.nextval,
+		  		 #{name},
+		  		 #{email},
+		  		 #{password},
+		  		 #{gender}
+		 )
+		]]>     
+	</insert>
+	
+	<!-- id 이름은 길어도 상관없음, 원하는 방식으로 넣기 -->
+	<!-- ex) selectUserByEmail, selectUserByNo -->
+	<!-- 세션에 넣을거기때문에 no,name만 넣어도 됨 -->
+	<select id="selectUserByEmailPw" parameterType="map" resultType="userVo">
+		<![CDATA[
+			select no, name
+			from users
+			where email = #{email}
+			and password = #{password}
+		]]>
+	</select>
+	
+	<!-- 정보 다 불러오기 -->
+	<select id="selectUserByInfo" parameterType="string" resultType="userVo">
+		<![CDATA[
+			select no, name, email, password, gender  
+			from users 
+			where no= #{no}
+		]]>
+	</select>
+	
+	<!-- 정보 수정 -->
+	<update id="update" parameterType="userVo">
+		<![CDATA[
+			update users 
+			set name = #{name} , password = #{password}, gender = #{gender} 
+			where no = #{no}
+		]]>
+	</update>
+	
+</mapper>
