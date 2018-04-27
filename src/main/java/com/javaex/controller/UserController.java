@@ -27,13 +27,13 @@ public class UserController {
 	@RequestMapping(value="/joinform", method=RequestMethod.GET)
 	public String joinform() {
 		
-		System.out.println("이랏샤이마세~ joinform:)");
+		System.out.println(">>enter /joinform");
 		return "user/joinform";
 	}
 	
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(@ModelAttribute UserVo userVo) {
-		System.out.println("가입됐디야_join");
+		System.out.println(">>process /join");
 		System.out.println(userVo.toString());
 		userService.join(userVo);
 		return "user/joinsuccess";
@@ -41,7 +41,7 @@ public class UserController {
 	
 	@RequestMapping(value="/loginform", method=RequestMethod.GET)
 	public String loginform() {
-		System.out.println("들어오기 전에 로그인해 loginform");
+		System.out.println(">>enter /loginform");
 		return "user/loginform";
 	}
 	
@@ -55,11 +55,13 @@ public class UserController {
       	 
       	 if(authUser != null) {
       		 session.setAttribute("authUser", authUser);
+      		 System.out.println(">>check Ok! /login");
       		 url = "redirect:/main";
       		 //return "redirect:/main";
       	
       	 } else {
       		url = "redirect:/user/loginform?result=fail"; 
+      		System.out.println(">>check Fail! /login");
       		//return "redirect:/user/loginform";
       	 } 
       	 
@@ -71,6 +73,7 @@ public class UserController {
 		
 		session.removeAttribute("authUser");
 		session.invalidate();
+		System.out.println(">>process /logout");
 		
 		return "redirect:/main";
 	}
@@ -79,6 +82,7 @@ public class UserController {
 	public String modifyform(HttpSession session, Model model) {
 		UserVo authVo = (UserVo)session.getAttribute("authUser");
 		UserVo userVo = userService.modifyform(authVo.getNo());
+		System.out.println(">>enter /modifyform");
 		System.out.println(userVo);
 		model.addAttribute("userVo", userVo);
 		
@@ -89,12 +93,13 @@ public class UserController {
 	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		
 		int result = userService.modify(userVo);
-		System.out.println(result);
+		System.out.println("DB 수정 성공반환값:" + result);
 		
 		if(result>0) {
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			authUser.setName(userVo.getName());
-			session.setAttribute("authUser", authUser);
+			System.out.println(">>process OK! /modify");
+			//session.setAttribute("authUser", authUser);
 			System.out.println(authUser);
 			return "redirect:/main";
 		} else {

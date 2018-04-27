@@ -11,7 +11,7 @@ public class MainController {
 
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String main() {
-		System.out.println("놬놬 메인 들렸슴다~");
+		System.out.println(">>enter /main");
 		return "main/index";
 	}
 }
