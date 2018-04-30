@@ -47,4 +47,13 @@
 		]]>
 	</update>
 	
+	<!-- 이메일 체크하기 -->
+	<select id="selectUserByEmailCheck" parameterType="string" resultType="int">
+		<![CDATA[
+			select count(*)
+			from users
+			where email = #{email}
+		]]>
+	</select>
+	
 </mapper>

@@ -38,4 +38,8 @@ public class UserDao {
 	public int update(UserVo userVo) {
 		return sqlSession.update("user.update", userVo);
 	}
+	
+	public int getCountByEmail(String email) {
+		return sqlSession.selectOne("user.selectUserByEmailCheck", email);
+	}
 }

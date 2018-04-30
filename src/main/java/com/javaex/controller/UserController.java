@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -105,5 +106,17 @@ public class UserController {
 		} else {
 			return "user/modifyform";
 		}
+	}
+	
+	//기존방식으로 해석 ㄴㄴ, 바디에 data넣어서 보낼테니 기존방식으로 해석하지마
+	@ResponseBody //return형이 원래 .~~으로 되있는데 그거 방지
+	@RequestMapping(value="/emailcheck", method=RequestMethod.POST)
+	public boolean exists(@RequestParam("email") String email) {
+		
+		System.out.println("ajax email check reply:" + email);
+		boolean isExists = userService.isEmailCheck(email);
+		//boolean isExists = true;
+
+		return isExists;
 	}
 }
