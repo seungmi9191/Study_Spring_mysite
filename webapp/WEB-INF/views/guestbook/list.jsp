@@ -61,7 +61,7 @@
 			</div><!-- /content -->
 		</div><!-- /wrapper -->
 		
-	<!-- footer -->
+		<!-- footer -->
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- footer -->
 		

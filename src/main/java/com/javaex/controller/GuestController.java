@@ -37,8 +37,9 @@ public class GuestController {
 		System.out.println("등록성공!" + result);
 		System.out.println(guestVo.toString());
 		
-		return "redirect:/guest/list";
-		
+		return "redirect:/guest/list";	
 	}
+	
+	
 	
 }
