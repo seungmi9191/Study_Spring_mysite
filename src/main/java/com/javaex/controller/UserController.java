@@ -107,6 +107,7 @@ public class UserController {
 			return "user/modifyform";
 		}
 	}
+
 	
 	//기존방식으로 해석 ㄴㄴ, 바디에 data넣어서 보낼테니 기존방식으로 해석하지마
 	@ResponseBody //return형이 원래 .~~으로 되있는데 그거 방지

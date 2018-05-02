@@ -16,13 +16,32 @@ public class GuestbookDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value="/insert", method=RequestMethod.GET)
+	
 	public int insert(GuestVo guestVo) {
 		return sqlSession.insert("guest.insert", guestVo);
 	}
 	
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	
 	public List<GuestVo> getList() {
 		return sqlSession.selectList("guest.list");
 	}
+	
+	
+	public int delete(GuestVo guestVo) {
+		return sqlSession.delete("guest.delete", guestVo);
+	}
+	
+	//추가됨
+	public GuestVo selectGuestBook(int no) {
+		return sqlSession.selectOne("guest.selectGuestBook", no);
+	}
+	
+	//여기서의 int는 getNo key값의 int
+	public int insert2(GuestVo guestVo) {
+		System.out.println(guestVo.toString());
+		sqlSession.insert("guest.insert2", guestVo); //반환된건 한줄 자체가 반환형 int no값 (뒤에 gusetVo는 앞에 service에서 받아온 값)
+		System.out.println(guestVo.toString());
+		return guestVo.getNo(); //굳이 guestVo.getNo();안해도 sqlSession.insert("guest.insert2",guestVo);로 바로 반환가능! (그 안에 값이 들어감)
+	}
+	
 }

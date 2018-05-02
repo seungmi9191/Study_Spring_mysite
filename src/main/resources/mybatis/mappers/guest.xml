@@ -22,5 +22,38 @@
 		  order by no desc
 		]]>	
 	</select>
+	
+	<delete id="delete" parameterType="guestVo">
+	<![CDATA[
+		delete
+		from guestbook
+		where no= #{no} and password= #{password}
+	]]>
+	</delete>
+	
+	<!-- 새로 변경된 쿼리문 -->
+	<insert id="insert2" parameterType="guestVo">
+	<selectKey keyProperty="no" resultType="int" order="BEFORE">	
+		select seq_gusetbook_no.nextval from dual
+	</selectKey>
+	<![CDATA[	
+		insert
+        into guestbook
+      	values ( #{no}, 
+      			 #{name}, 
+      			 #{password}, 
+      			 #{content}, 
+      			 sysdate 
+      		   )
+      ]]>
+	</insert>
+	
+	<select id="selectGuestBook" parameterType="int" resultType="guestVo">
+		<![CDATA[
+			select no, name, content, reg_date regDate
+			from guestbook
+			where no =#{no}
+		]]>
+	</select>
 
 </mapper>

@@ -25,4 +25,27 @@ public class GuestbookService {
 	public List<GuestVo> getList(){
 		return guestbookDao.getList();
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public int delete(GuestVo guestVo) {
+		
+		int count = guestbookDao.delete(guestVo);
+		
+		if(count>0) {
+			System.out.println("삭제성공");
+		} else {
+			System.out.println("삭제실패");
+		}
+		return count;
+	}
+	
+	
+	public GuestVo write(GuestVo guestVo) {
+		
+		//insert
+		int no = guestbookDao.insert2(guestVo);
+		
+		//select
+		return guestbookDao.selectGuestBook(no);
+	}
 }

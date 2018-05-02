@@ -23,13 +23,15 @@
 			<div id="content">
 				<div id="guestbook" class="delete-form">
 					
-					<form method="" action="">
+					<form method="GET" action="${pageContext.request.contextPath}/guest/delete">
 						
+						<label>받아온 no값 </label>
+						<input type="text" name="no" value="${param.no}"><br/>
 						<label>비밀번호</label>
 						<input type="password" name="password">
 						<input type="submit" value="확인">
 					</form>
-					<a href="">방명록 리스트</a>
+					<a href="${pageContext.request.contextPath}/guest/list">방명록 리스트</a>
 					
 				</div>
 			</div><!-- /content -->
