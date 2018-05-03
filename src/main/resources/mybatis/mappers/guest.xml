@@ -33,7 +33,7 @@
 	
 	<!-- 새로 변경된 쿼리문 -->
 	<insert id="insert2" parameterType="guestVo">
-	<selectKey keyProperty="no" resultType="int" order="BEFORE">	
+	<selectKey keyProperty="no" resultType="int" order="BEFORE"> <!-- int번호를 받아온게 vo로 들어가서 그 vo에서 밑에 sql문으로 꺼내온거 -->
 		select seq_gusetbook_no.nextval from dual
 	</selectKey>
 	<![CDATA[	

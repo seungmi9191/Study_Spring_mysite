@@ -33,32 +33,19 @@
 						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
-					</tr>				
-					<tr>
-						<td>3</td>
-						<td><a href="">세 번째 글입니다.</a></td>
-						<td>황일영</td>
-						<td>3</td>
-						<td>2015-10-11 12:04:20</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="">두 번째 글입니다.</a></td>
-						<td>정우성</td>
-						<td>3</td>
-						<td>2015-10-02 12:04:12</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td><a href="">첫 번째 글입니다.</a></td>
-						<td>이효리</td>
-						<td>3</td>
-						<td>2015-09-25 07:24:32</td>
-						<td><a href="" class="del">삭제</a></td>
-					</tr>
+					</tr>	
+					<c:forEach items="${bList}" var="list">	
+						<tr>
+							<td>${list.no}</td>
+							<td><a href="${pageContext.request.contextPath}/board/view?no=${list.no}">${list.title}</a></td>
+							<td>${list.name}</td>
+							<td>0</td>
+							<td>${list.reg_date}</td>
+							<td><a href="" class="del">삭제</a></td>
+						</tr>
+					</c:forEach>	
 				</table>
+				
 				<div class="pager">
 					<ul>
 						<li><a href="">◀</a></li>
@@ -71,7 +58,11 @@
 					</ul>
 				</div>				
 				<div class="bottom">
-					<a href="" id="new-book">글쓰기</a>
+					
+						<c:if test="${authUser != null}">
+							<a href="${pageContext.request.contextPath}/board/write" id="new-book">글쓰기</a>
+						</c:if>
+				
 				</div>				
 			</div>
 		</div>

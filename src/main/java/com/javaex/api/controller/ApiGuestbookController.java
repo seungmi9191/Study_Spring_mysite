@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +34,7 @@ public class ApiGuestbookController {
 	
 	@ResponseBody
 	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public GuestVo add(@ModelAttribute GuestVo guestVo) {
+	public GuestVo add(@RequestBody GuestVo guestVo) { //원래는 @ModelAttribute
 		
 		System.out.println("add");
 		System.out.println(guestVo.toString());
@@ -48,7 +49,7 @@ public class ApiGuestbookController {
 	public int delete(@ModelAttribute GuestVo guestVo) {
 		
 		int result = guestbookService.delete(guestVo);
-		
+		System.out.println("controller: "+result);
 		return result;
 	}
 	

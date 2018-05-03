@@ -32,8 +32,12 @@ public class GuestbookService {
 		int count = guestbookDao.delete(guestVo);
 		
 		if(count>0) {
+			count = guestVo.getNo();//이 번호로 찾아서 지운다.
+			System.out.println(count);
 			System.out.println("삭제성공");
 		} else {
+			count = 0;
+			System.out.println(count);
 			System.out.println("삭제실패");
 		}
 		return count;
@@ -43,9 +47,11 @@ public class GuestbookService {
 	public GuestVo write(GuestVo guestVo) {
 		
 		//insert
-		int no = guestbookDao.insert2(guestVo);
+		int no = guestbookDao.insert2(guestVo); 
+		// guestbookDao.insert2(guestVo); 
 		
 		//select
 		return guestbookDao.selectGuestBook(no);
+		//return guestbookDao.selectGuestBook(vo.getNo());
 	}
 }
