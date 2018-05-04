@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="file"> <!--클래스명은 xml명과 똑같을 필요 없음 -->
+
+	<insert id="insert" parameterType="fileVo">
+	<![CDATA[
+		  insert into files
+		  values (seq_file_no.nextval,
+		  		 #{orgName},
+		  		 #{saveName},
+		  		 #{filePath},
+		  		 #{fileSize}
+		 )
+		]]>
+	</insert>
+
+	<select id="selectList" resultType="fileVo">
+	<![CDATA[	
+		select no, orgName, saveName, filePath, fileSize
+		from files
+		order by no desc
+	]]>
+	</select>
+
+
+
+
+</mapper>

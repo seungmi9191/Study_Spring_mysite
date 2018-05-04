@@ -6,11 +6,13 @@
               <typeAlias alias="userVo" type="com.javaex.vo.UserVo"/>
               <typeAlias alias="guestVo" type="com.javaex.vo.GuestVo"/>
               <typeAlias alias="boardVo" type="com.javaex.vo.BoardVo"/>
+              <typeAlias alias="fileVo" type="com.javaex.vo.FileVo"/>
         </typeAliases>    
     <mappers>
         <!--xml 파일이 추가될 경우 아래에 계속 mapper 시켜줘야한다.-->
         <mapper resource="mybatis/mappers/user.xml"/>
         <mapper resource="mybatis/mappers/guest.xml"/>
         <mapper resource="mybatis/mappers/board.xml"/>
+        <mapper resource="mybatis/mappers/file.xml"/>
     </mappers>
 </configuration>
