@@ -41,7 +41,10 @@
 							<td>${list.name}</td>
 							<td>0</td>
 							<td>${list.reg_date}</td>
-							<td><a href="" class="del">삭제</a></td>
+							<td><c:if test="${list.user_no eq authUser.no}">
+									<a href="${pageContext.request.contextPath}/board/delete?no=${list.no}" class="del">삭제</a>
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>	
 				</table>

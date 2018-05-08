@@ -52,4 +52,10 @@ public class BoardService {
 		
 		return count;
 	}
+	
+	public int delete(int no) {
+		int count = boardDao.delete(no);
+		System.out.println(count);
+		return count;
+	}
 }

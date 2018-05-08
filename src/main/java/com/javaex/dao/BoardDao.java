@@ -33,4 +33,9 @@ public class BoardDao {
 	public int insert(BoardVo boardVo) {
 		return sqlSession.insert("board.insert", boardVo);
 	}
+	
+	public int delete(int no) {
+		System.out.println("받아오는 게시물 번호: " + no);
+		return sqlSession.delete("board.delete", no);
+	}
 }

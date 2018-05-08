@@ -28,6 +28,7 @@ public class BoardController {
 		
 		List<BoardVo> bList = boardService.bList();
 		model.addAttribute("bList", bList);
+		System.out.println(">>enter board_list");
 		
 		return "board/list";
 	}
@@ -38,6 +39,7 @@ public class BoardController {
 		BoardVo vo = boardService.viewNo(no);
 		model.addAttribute("vo", vo);
 		System.out.println(vo.toString());
+		System.out.println(">>success board_view");
 		return "board/view";
 	}
 	
@@ -56,6 +58,7 @@ public class BoardController {
 		
 		boardService.update(boardVo);
 		System.out.println(boardVo.toString());
+		System.out.println(">>enter board_modify_ok");
 		return "redirect:/board/list";
 	}
 	
@@ -72,7 +75,18 @@ public class BoardController {
 		boardVo.setUser_no(authVo.getNo()); //Board에 setUser_no에 세션 사용자 no을 넣어줘
 		boardService.insert(boardVo);
 		System.out.println(boardVo.toString());
+		System.out.println(">>success board_write");
 		
 		return "redirect:/board/list";
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String delete(@RequestParam ("no") int no) {
+		
+		boardService.delete(no);
+		System.out.println(">>success board_delete");
+		
+		return "redirect:/board/list";
+	}
+	
 }
